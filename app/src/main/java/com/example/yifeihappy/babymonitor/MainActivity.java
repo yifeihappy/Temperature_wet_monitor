@@ -95,13 +95,13 @@ public class MainActivity extends AppCompatActivity {
     static void stopMediaPlayer()
     {
         if(mediaPlayer.isPlaying()){
-            mediaPlayer.stop();
+            mediaPlayer.pause();
         }
-        try {
-            mediaPlayer.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            mediaPlayer.prepare();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
         if(null != mediaPlayer && mediaPlayer.isPlaying()){
             mediaPlayer.stop();
         }
-
         android.os.Process.killProcess(android.os.Process.myPid());
     }
 }

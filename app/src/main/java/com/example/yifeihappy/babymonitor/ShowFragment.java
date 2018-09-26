@@ -70,9 +70,11 @@ public class ShowFragment extends Fragment {
                     break;
                 case CONNECT_WHAT:
                     setBtnState_con_disconnect(false, true);
+                    Toast.makeText(ShowFragment.this.getActivity(), "连接成功！", Toast.LENGTH_SHORT).show();
                     break;
                 case DISCONNECT_WHAT:
                     setBtnState_con_disconnect(true, false);
+                    Toast.makeText(ShowFragment.this.getActivity(), "已断开连接", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -273,6 +275,7 @@ public class ShowFragment extends Fragment {
         @Override
         public void run() {
             super.run();
+            MainActivity.mediaPlayer.seekTo(0);
             MainActivity.mediaPlayer.start();//开始播放
 
             NoticeFragment.setNoticeBtnClickable(true);

@@ -10,12 +10,12 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
+        android:layout_weight="0.05"
         android:elevation="0dp"
-        android:gravity="center_horizontal"
+        android:gravity="center_vertical|center_horizontal"
         android:text="尿床提醒"
         android:textColor="@android:color/holo_green_light"
-        android:textSize="24sp"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
     <ImageButton
@@ -30,5 +30,4 @@
         android:scaleType="fitXY"
         app:srcCompat="@drawable/light00" />
 
-
-</LinearLayout>
+    </LinearLayout>

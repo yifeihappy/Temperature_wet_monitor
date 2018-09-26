@@ -20,11 +20,35 @@ public class NoticeFragment extends Fragment {
 
     volatile static boolean NOTICE_BTN_CLICKABLE = false;
     static ImageButton noticeBtn = null;
+    final static int NOTICE_CLICKABLE_WHAT = 0x000;
+    final static int NOTICE_DISCLICKABLE_WHAT = 0x001;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+    static Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case NOTICE_CLICKABLE_WHAT:
+                    if(null != noticeBtn) {
+                        noticeBtn.setImageResource(R.drawable.light);
+                        noticeBtn.setEnabled(true);
+                    }
+                    NOTICE_BTN_CLICKABLE = true;
+                    break;
+                case NOTICE_DISCLICKABLE_WHAT:
+                    if(null != noticeBtn){
+                        noticeBtn.setImageResource(R.drawable.light00);
+                        noticeBtn.setEnabled(false);
+                    }
+                    NOTICE_BTN_CLICKABLE = false;
+                    break;
+            }
+        }
+    };
 
     @Nullable
     @Override
@@ -47,17 +71,13 @@ public class NoticeFragment extends Fragment {
 
     public static void setNoticeBtnClickable(boolean noticeBtnState)
     {
+        Message msg = new Message();
         if(noticeBtnState) {
-            if(null != noticeBtn) {
-                noticeBtn.setImageResource(R.drawable.light);
-            }
-            NOTICE_BTN_CLICKABLE = true;
+            msg.what = NOTICE_CLICKABLE_WHAT;
+            handler.sendMessage(msg);
         } else {
-            if(null != noticeBtn){
-                noticeBtn.setImageResource(R.drawable.light00);
-                noticeBtn.setEnabled(noticeBtnState);
-            }
-            NOTICE_BTN_CLICKABLE = false;
+            msg.what = NOTICE_DISCLICKABLE_WHAT;
+            handler.sendMessage(msg);
         }
     }
 }
